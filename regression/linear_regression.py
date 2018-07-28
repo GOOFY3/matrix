@@ -1,18 +1,24 @@
-from scipy import stats
-from matplotlib import pyplot as plt
-import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
 
-x = np.array([112, 345, 198, 305, 372, 550, 302, 420, 578])
-y = np.array([1120, 1523, 2102, 2230, 2600, 3200, 3409, 3689, 4460])
+df = pd.read_csv("day.csv")
 
-slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
+#x --> Independent
+#y --> Dependent
+df.columns
 
-plt.plot(x, y, 'ro', color='black')
+from sklearn.linear_model import LinearRegression
 
-plt.ylabel('Price')
-plt.xlabel('Size of Houses')
+lm = LinearRegression()
+#lm.fit(df["hum"].values.reshape(-1,1),df["cnt"].values.reshape(-1,1))
 
-plt.axis([0, 600, 0, 5000])
 
-plt.plot()
-plt.show()
+#lm.predict(0.8)
+#lm.predict(0.6)
+#shows inversely proportional relationship
+
+plt.scatter(df["hum"], df["cnt"])
+
+lm.fit(df[["temp", "hum"]],df["cnt"].value.reshape(-1,1))
+lm.predict([[0.2, 0.8]])
+
