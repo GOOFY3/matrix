@@ -41,6 +41,10 @@ y_pred = regressor.predict(X_test)
 plt.plot(y_test, "ro", color="blue")
 plt.plot(y_pred, "ro", color="red")
 
+#backward elimination
+import statsmodels.formula.api as sm
+X = np.append(arr = np.ones(50,1).astype(int), values=X, axis=1)
+
 
 # feature scaling(Optional)
 """from sklearn.preprocessing import StandardScaler
