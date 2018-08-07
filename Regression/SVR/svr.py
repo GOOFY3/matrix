@@ -10,6 +10,7 @@ dataset = pd.read_csv("./Position_Salaries.csv")
 #data splitting
 X = dataset.iloc[:, 1:2].values
 y = dataset.iloc[:,2].values
+y = y.reshape(-1,1)
 
 # feature scaling(Optional)
 from sklearn.preprocessing import StandardScaler
@@ -17,6 +18,7 @@ sc_X = StandardScaler()
 sc_y = StandardScaler()
 X = sc_X.fit_transform(X)
 y = sc_y.fit_transform(y)
+
 
 
 
@@ -37,9 +39,6 @@ from sklearn.svm import SVR
 regressor = SVR(kernel = 'rbf')
 regressor.fit(X,y)
 
-result = regressor.predict(6.5)
-if result < 155000 or result > 165000:
-    print("The Interviewer is bluffing!")
     
 plt.scatter(X,y, color="red")    
 plt.plot(X, regressor.predict(X), color="blue")    
