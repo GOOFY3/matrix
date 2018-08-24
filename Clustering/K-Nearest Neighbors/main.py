@@ -9,6 +9,7 @@ df.drop(['id'],1, inplace = True)
 X = df.iloc[:,0:9]
 y = df.iloc[:,9]
 
+
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size = 0.2)
 
 clf = neighbors.KNeighborsClassifier()
